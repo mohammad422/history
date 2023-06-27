@@ -1,0 +1,55 @@
+* {
+    direction: rtl;
+    font-family: IRANSans;
+
+}
+body{
+    background: fixed url('../image/back/historypic.png');
+}
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../fonts/woff/IRANSansWeb_Bold.woff') format('woff');  /* All Major Browsers */
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 500;
+    src: url('../fonts/woff/IRANSansWeb_Medium.woff') format('woff');  /* All Major Browsers */
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/woff/IRANSansWeb_Light.woff') format('woff');  /* All Major Browsers */
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 200;
+    src: url('../fonts/woff/IRANSansWeb_UltraLight.woff') format('woff');  /* All Major Browsers */
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/woff/IRANSansWeb.woff') format('woff');  /* All Major Browsers */
+}
+
+
+a {
+    text-decoration-line: none !important;
+}
+
+.major {
+
+    background-color: rgba(243, 229, 216, 0.9);
+}
+nav,footer{
+    background-color:rgb(51, 26, 0);
+}

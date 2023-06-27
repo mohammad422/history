@@ -1,0 +1,63 @@
+* {
+    direction: rtl;
+    font-family: IRANSans;
+}
+
+.bootstrap-tagsinput .tag {
+    margin-right: 2px;
+    color: white !important;
+    background-color: #4137ce;
+    padding: .2em .6em .3em;
+    font-size: 100%;
+    font-weight: 700;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.sidebar .nav-item a {
+    color: ghostwhite !important;
+}
+
+.sidebar .nav-item a:hover {
+    color: grey !important;
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../fonts/woff/IRANSansWeb_Bold.woff') format('woff');  /* All Major Browsers */
+}
+
+
+table.dataTable thead th {
+    text-align: right;
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 500;
+    src: url('../fonts/woff/IRANSansWeb_Medium.woff') format('woff');  /* All Major Browsers */
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/woff/IRANSansWeb_Light.woff') format('woff');  /* All Major Browsers */
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 200;
+    src: url('../fonts/woff/IRANSansWeb_UltraLight.woff') format('woff');  /* All Major Browsers */
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/woff/IRANSansWeb.woff') format('woff');  /* All Major Browsers */
+}

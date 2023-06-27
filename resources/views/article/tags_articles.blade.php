@@ -1,0 +1,49 @@
+@extends('layouts.app')
+@section('title')
+    {{$tag_with_articles->tag_name}}
+@endsection
+@section('content')
+    <!-- Page Content-->
+    <section class="py-5">
+        <div class="container px-5 pb-4">
+            <div class="row gx-5 py-5" style="background-color:rgba(243, 229, 216);">
+                <div class="col-lg-9 py-0 mb-5">
+                    <!-- Post content-->
+                    <!--All Articles -->
+                    <h2 class="fw-bolder mb-4"> مقالاتی با کلید واژه {{$tag_with_articles->tag_name}} </h2>
+                    <hr>
+                    <!-- articles item-->
+                    @foreach($tag_with_articles->articles as $article)
+                        <div class="row mb-5">
+                            <div class="col-md-2"><img src="{{asset('image/articles/small/'.$article->image)}}"
+                                                       style="width:100%; height:100%;" alt="article"/></div>
+                            <div class="col-md-10">
+                                <div
+                                    class="small text-muted fst-italic mb-2">{{Morilog\Jalali\Jalalian::forge($article->created_at)->format('%d %B %Y')}}</div>
+                                <a class="link-dark" href="{{url('/articles/'.$article->article_code.'/'.$article->slug)}}">
+                                    <h3>{{$article->title}}</h3></a>
+                            </div>
+                        </div>
+                        <hr>
+                    @endforeach
+                </div>
+                <div class="col-lg-3">
+                    <div class="d-flex align-items-center mt-1 mb-4">
+                        <div class="card" style="border-radius: 3px; background-color:#ecd7c6">
+                            <h4 class="card-header text-center text-light p-3"
+                                style="background-color:rgb(153, 102, 51)">پرکاربردترین کلید واژه ها</h4>
+                            <div class="card-body text-center">
+                                @foreach($most_views_tags as $tag)
+                                    <a class="links" style="color:rgb(40,40,40)"
+                                       href="{{route('tag.articles',$tag->tag_name)}}">{{$tag->tag_name}}</a>
+                                    <br><br>
+                                @endforeach
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
