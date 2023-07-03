@@ -33,6 +33,12 @@
                             دسته ها
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('comments')}}">
+                            <span data-feather="file"></span>
+                            نظرات
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>

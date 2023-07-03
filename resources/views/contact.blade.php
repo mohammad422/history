@@ -49,10 +49,19 @@
                             </div>
                             <div class="d-grid">
                                 <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        تلفن همراه: 09126154553
+        <br>
+        تلفن ثابت:32710828-026
+        <br>
+        ایمیل: jahanetarikh@gmail.com
+        <br>
+        آدرس: کرج بلوار سرداران خیابان فرهنگیان کوچه دوم غربی مجتمع هشت بهشت واحد 6
+        <br>
     </section>
 @endsection

@@ -51,4 +51,9 @@ class Article extends Model
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

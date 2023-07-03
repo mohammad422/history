@@ -17,10 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
     $latest_articles = cache('articles', function () {
         return Article::where('status', 1)->latest()->take(3)->get();
     });
-    $most_views_articles = Article::where('status',1)->orderBy('views', 'DESC')->take(3)->get();
+    $most_views_articles = Article::where('status', 1)->orderBy('views', 'DESC')->take(3)->get();
     $latest_article = Article::where('status', 1)->latest()->first();
     // $latest_articles = Article::where('status', 1)->latest()->take(3)->get();
     $latest_other_source_articles = Article::where('status', 1)->where('source', '<>', null)->latest()->take(3)->get();
@@ -56,10 +57,16 @@ Route::middleware(['can:isAdmin'])->prefix('admin')->group(function () {
     Route::get('/articles/{id}/restore', [\App\Http\Controllers\Admin\ArticleController::class, 'restore'])->name('articles.restore');
     Route::get('/categories', [\App\Http\Controllers\Admin\ArticleController::class, 'categories'])->name('categories');
     Route::post('/category/store', [\App\Http\Controllers\Admin\ArticleController::class, 'storeCategory'])->name('categories.store');
-    Route::get('/articles/{article}',[\App\Http\Controllers\Admin\ArticleController::class,'show']);
+    Route::get('/articles/{article}', [\App\Http\Controllers\Admin\ArticleController::class, 'show']);
+
+    Route::get('/comments', [\App\Http\Controllers\Admin\CommentController::class, 'comments'])->name('comments');
+    Route::get('/comments/{comment}/activation', [\App\Http\Controllers\Admin\CommentController::class, 'activation'])->name('activation');
+    Route::get('/comments/{comment}/delete', [\App\Http\Controllers\Admin\CommentController::class, 'destroy'])->name('comments.delete');
 });
 
 Route::get('/articles/{article_code}/{slug}', [\App\Http\Controllers\ArticleController::class, 'show'])->name('article');
 
 Route::get('/tagarticles/{tag}', [\App\Http\Controllers\ArticleController::class, 'all_tag_articles'])->name('tag.articles');
 Route::get('/categoryarticles/{category}', [\App\Http\Controllers\ArticleController::class, 'all_category_articles'])->name('category_articles');
+
+Route::post('/comments/store', [\App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');

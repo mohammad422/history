@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
-    public function show($article_code,$slug)
+    public function show($article_code, $slug)
     {
         $article = Article::where('article_code', $article_code)->with('category')->with('tags')->first();
         $latest_articles = cache('articles', function () {
@@ -19,8 +21,8 @@ class ArticleController extends Controller
 
         $article->increment('views');
         $article->save();
-        /* $number_likes = $article->users->count();
-         $comments = Comment::where('commentable_id', $article->id)->get();*/
+        /* $number_likes = $article->users->count();*/
+        $comments = Comment::where('commentable_id', $article->id)->where('status', 1)->get();
         //dd($number_likes);
         /*  $date = Jalalian::forge('today')->format('%A, %d %B %Y');
           $likes = $article->users->toArray();
@@ -33,7 +35,8 @@ class ArticleController extends Controller
           }*/
 
         //   return view('test', compact('article', 'date', 'number_likes', 'comments', 'is_like'));
-        return view('article.article', compact('article', 'latest_articles'));
+        return view('article.article', compact('article', 'latest_articles', 'comments'));
+
     }
 
     public function articles()
@@ -50,13 +53,13 @@ class ArticleController extends Controller
         }])->where('id', $tag->id)->first();
 
 
-        $most_views_tags =DB::table('taggables')->join('tags','tags.id','=','taggables.tag_id')
+        $most_views_tags = DB::table('taggables')->join('tags', 'tags.id', '=', 'taggables.tag_id')
             ->select(DB::raw('count("tag_id") as repetition, tag_id, tags.tag_name'))
-                     ->groupBy('taggables.tag_id','tags.tag_name')
-        ->orderBy('repetition', 'desc')->take(3)
-        ->get();
+            ->groupBy('taggables.tag_id', 'tags.tag_name')
+            ->orderBy('repetition', 'desc')->take(3)
+            ->get();
 
-        return view('article.tags_articles', compact('tag_with_articles','most_views_tags'));
+        return view('article.tags_articles', compact('tag_with_articles', 'most_views_tags'));
     }
 
     public function all_category_articles(Category $category)
